@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leukos — Revenue Systems</title>
+<title>Leukos Revenue Systems</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -561,7 +561,7 @@ footer p { font-size: 13px; color: var(--grey); }
 .reveal.in { opacity: 1; transform: translateY(0); }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; }
   .hero-right { display: none; }
   .offres-grid { grid-template-columns: 1fr 1fr; }
@@ -599,23 +599,34 @@ footer p { font-size: 13px; color: var(--grey); }
     <p class="hero-sub reveal">
       Vous avez les outils. Vous avez les équipes.<br>
       <strong>Vous n'en tirez pas encore le plein potentiel.</strong><br><br>
-      On construit ensemble le système qui fait que les leads rentrent, avancent et se ferment — sans que votre équipe passe sa journée à des tâches qui peuvent être automatisées.
+      On construit ensemble le système qui fait que les leads rentrent, avancent et se ferment sans que votre équipe passe sa journée à des tâches qui peuvent être automatisées.
     </p>
-    <a href="#offres" class="btn-primary reveal">Voir les offres →</a>
+    <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+      <a href="#offres" class="btn-primary reveal">Voir les offres →</a>
+      <a href="#contact" class="reveal" style="font-size: 14px; color: var(--lime); text-decoration: none; border-bottom: 1px solid rgba(214,241,81,0.3); padding-bottom: 2px; transition: border-color 0.2s;" onmouseover="this.style.borderColor='rgba(214,241,81,0.8)'" onmouseout="this.style.borderColor='rgba(214,241,81,0.3)'">Demander l'audit gratuit</a>
+    </div>
   </div>
 
   <div class="hero-right reveal">
     <div class="kpi-card">
-      <div class="kpi-num">$900 → $50K</div>
-      <div class="kpi-label">CA mensuel — marque horlogère, 6 mois</div>
+      <div class="kpi-num" style="font-size: 28px;">10 ans</div>
+      <div class="kpi-label">Marketing digital, CRM & RevOps</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-num">10 ans</div>
-      <div class="kpi-label">Marketing digital, CRM &amp; RevOps</div>
+      <div class="kpi-num" style="font-size: 28px;">+2 pts</div>
+      <div class="kpi-label">Conversion lead → étudiant — Stratégie nurturing, école de commerce (Allemagne)</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-num refs">L'Oréal · Dior</div>
-      <div class="kpi-label">Références clients via Studio Sixe</div>
+      <div class="kpi-num" style="font-size: 28px;">$900 → $50K</div>
+      <div class="kpi-label">CA mensuel, marque horlogère</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-num" style="font-size: 28px;">85k€</div>
+      <div class="kpi-label">23 opportunités, 5 clients signés en 4 mois</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-num refs">Outbound & CRM</div>
+      <div class="kpi-label">Agence créative luxe (réf. clients : L'Oréal, Dior, Chanel)</div>
     </div>
   </div>
 </section>
@@ -682,17 +693,17 @@ footer p { font-size: 13px; color: var(--grey); }
     <div class="v-card reveal">
       <div class="v-card-num">Enrichissement</div>
       <strong>Des données complètes sans effort manuel</strong>
-      <p>Entreprise, poste, taille d'équipe, stack tech — les informations qui qualifient un lead arrivent automatiquement dans votre CRM, sans que personne ne les saisisse à la main.</p>
+      <p>Entreprise, poste, taille d'équipe, stack tech les informations qui qualifient un lead arrivent automatiquement dans votre CRM, sans que personne ne les saisisse à la main.</p>
     </div>
     <div class="v-card reveal">
       <div class="v-card-num">Nettoyage</div>
       <strong>Un CRM propre qui reste propre</strong>
-      <p>Doublons, données obsolètes, contacts sans activité — détectés et traités automatiquement. La base de données reste exploitable sans effort continu.</p>
+      <p>Doublons, données obsolètes, contacts sans activité détectés et traités automatiquement. La base de données reste exploitable sans effort continu.</p>
     </div>
     <div class="v-card reveal">
       <div class="v-card-num">Séquences</div>
       <strong>Les relances qui partent au bon moment</strong>
-      <p>Nurturing, réactivation, onboarding — les bonnes séquences se déclenchent sans intervention manuelle. Aucun lead ne coule faute de suivi.</p>
+      <p>Nurturing, réactivation, onboarding les bonnes séquences se déclenchent sans intervention manuelle. Aucun lead ne coule faute de suivi.</p>
     </div>
   </div>
 </section>
@@ -746,7 +757,7 @@ footer p { font-size: 13px; color: var(--grey); }
       <div class="offre-badge">Retainer · Full scope</div>
       <div class="offre-name">Revenue Architecture</div>
       <div class="offre-price">1 200 – 1 600 € / mois</div>
-      <p class="offre-desc">Stratégie + exécution complète. Construction du système de revenus, pilotage en continu, ajustements au fil des données. Acquisition, nurturing, closing — bout en bout.</p>
+      <p class="offre-desc">Stratégie + exécution complète. Construction du système de revenus, pilotage en continu, ajustements au fil des données. Acquisition, nurturing, closing bout en bout.</p>
       <ul class="offre-list">
         <li>Tout le Revenue Partner</li>
         <li>Stratégie d'acquisition multicanale</li>
@@ -767,29 +778,59 @@ footer p { font-size: 13px; color: var(--grey); }
       <div class="proof-kpi reveal">
         <div>
           <div class="pk-num">$900→$50K</div>
-          <div class="pk-label">CA mensuel — marque horlogère<br>6 mois de mandat</div>
+          <div class="pk-label">CA mensuel marque horlogère<br>6 mois de mandat</div>
         </div>
       </div>
       <div class="proof-kpi reveal">
         <div>
-          <div class="pk-num ref-names">L'Oréal · Dior</div>
-          <div class="pk-label">Références clients<br>via Studio Sixe</div>
+          <div class="pk-num" style="font-size: 32px; color: var(--purple-mid);">+2 pts</div>
+          <div class="pk-label">Conversion lead → étudiant<br>Stratégie nurturing, école de commerce (Allemagne)</div>
+        </div>
+      </div>
+      <div class="proof-kpi reveal">
+        <div>
+          <div class="pk-num" style="font-size: 32px;">85k€</div>
+          <div class="pk-label">23 opportunités, 5 clients signés<br>en 4 mois</div>
         </div>
       </div>
     </div>
 
     <div class="proof-copy">
       <p class="reveal">
-        Dix ans en marketing digital mènent inévitablement à la même question : pourquoi ça ne convertit pas derrière ? C'est là que le RevOps commence — dans cette friction entre ce que le marketing génère et ce que les sales en font. Comprendre les canaux d'acquisition, les process de closing, les points de blocage à chaque étape du pipe, et les activer ensemble : c'est cette vision bout en bout qui fait la différence entre un CRM bien configuré et un système de revenus qui tourne vraiment.
+        Dix ans en marketing digital mènent inévitablement à la même question : pourquoi ça ne convertit pas derrière ? C'est là que le RevOps commence dans cette friction entre ce que le marketing génère et ce que les sales en font. Comprendre les canaux d'acquisition, les process de closing, les points de blocage à chaque étape du pipe, et les activer ensemble : c'est cette vision bout en bout qui fait la différence entre un CRM bien configuré et un système de revenus qui tourne vraiment.
       </p>
       <p class="reveal" style="font-size:15px; color: var(--grey); line-height:1.8; padding: 24px 28px; border-left: 3px solid var(--lime); margin-bottom: 32px;">
-        Une chose qui compte beaucoup dans cette façon de travailler : prendre le temps de comprendre votre business de l'intérieur avant de toucher à quoi que ce soit. Pas d'hypothèses, pas de template appliqué à l'aveugle. Ce qui est le mieux pour vous — pas ce qui est le plus rapide à livrer.
+        Une chose qui compte beaucoup dans cette façon de travailler : prendre le temps de comprendre votre business de l'intérieur avant de toucher à quoi que ce soit. Pas d'hypothèses, pas de template appliqué à l'aveugle. Ce qui est le mieux pour vous pas ce qui est le plus rapide à livrer.
       </p>
       <div class="proof-refs">
-        <div class="ref-row reveal"><div class="ref-dot"></div>Agence créative luxe — setup CRM complet + stratégie growth</div>
-        <div class="ref-row reveal"><div class="ref-dot"></div>Cabinet de recrutement — pipeline et séquences outbound</div>
-        <div class="ref-row reveal"><div class="ref-dot"></div>Cabinet d'avocats M&A France × Inde — 10% de taux de réponse en cold mail</div>
-        <div class="ref-row reveal"><div class="ref-dot"></div>Formation & écoles de commerce — 85k de pipeline généré, 40k signés en 4 mois</div>
+        <div class="ref-row reveal">
+          <div class="ref-dot"></div>
+          <div>
+            <div style="font-size: 13px; color: var(--white); margin-bottom: 3px; font-weight: 500;">Agence créative luxe</div>
+            <div style="font-size: 12px; color: var(--grey);">Setup CRM complet + stratégie growth</div>
+          </div>
+        </div>
+        <div class="ref-row reveal">
+          <div class="ref-dot"></div>
+          <div>
+            <div style="font-size: 13px; color: var(--white); margin-bottom: 3px; font-weight: 500;">Cabinet de recrutement</div>
+            <div style="font-size: 12px; color: var(--grey);">Structuration CRM custom, pipeline et séquences outbound</div>
+          </div>
+        </div>
+        <div class="ref-row reveal">
+          <div class="ref-dot"></div>
+          <div>
+            <div style="font-size: 13px; color: var(--white); margin-bottom: 3px; font-weight: 500;">Cabinet d'avocats M&A France × Inde</div>
+            <div style="font-size: 12px; color: var(--grey);">10% de taux de réponse en cold mail</div>
+          </div>
+        </div>
+        <div class="ref-row reveal">
+          <div class="ref-dot"></div>
+          <div>
+            <div style="font-size: 13px; color: var(--white); margin-bottom: 3px; font-weight: 500;">Formation & écoles de commerce</div>
+            <div style="font-size: 12px; color: var(--grey);">85k de pipeline généré, 40k signés en 4 mois</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -821,16 +862,17 @@ footer p { font-size: 13px; color: var(--grey); }
       <p class="step-desc">Suivi mensuel des métriques. Alertes quand quelque chose dérive. Vous savez toujours exactement où vous en êtes.</p>
     </div>
   </div>
+  <div style="text-align: center; margin-top: 56px;">
+    <a href="#contact" class="btn-primary reveal" style="display: inline-flex;">Démarrer par l'audit gratuit →</a>
+  </div>
 </section>
-
-<!-- AUDIT GRATUIT -->
 <section style="background: var(--lime); padding: 80px 64px;">
   <div style="max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center;">
     <div>
       <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(13,13,13,0.5); margin-bottom: 20px;">Offre d'entrée · Gratuit</div>
       <h2 style="color: var(--black); margin-bottom: 16px; font-size: clamp(28px, 3.5vw, 44px);">Audit CRM offert.</h2>
       <p style="font-size: 16px; color: rgba(13,13,13,0.7); line-height: 1.75; max-width: 520px; margin-bottom: 0;">
-        Lecture complète de votre CRM, call de 30 min avec vous, call de 30 min avec un commercial. Restitution structurée de ce qui fonctionne, ce qui coince, et ce qui peut être amélioré rapidement — sans engagement.
+        Lecture complète de votre CRM, call de 30 min avec vous, call de 30 min avec un commercial. Restitution structurée de ce qui fonctionne, ce qui coince, et ce qui peut être amélioré rapidement sans engagement.
       </p>
     </div>
     <div style="flex-shrink: 0;">
