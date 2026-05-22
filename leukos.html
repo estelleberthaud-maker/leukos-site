@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leukos — Revenue Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --black:      #0d0d0d;
+  --card:       #131020;
+  --purple:     #583b8a;
+  --purple-mid: #7b52b8;
+  --lime:       #d6f151;
+  --white:      #f2f0eb;
+  --grey:       #9b96a8;
+  --border:     rgba(123,82,184,0.25);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* grain */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 26px 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(13,13,13,1) 0%, rgba(13,13,13,0) 100%);
+}
+
+.logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  text-decoration: none;
+}
+.logo span { color: var(--lime); }
+
+.nav-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--black);
+  background: var(--lime);
+  text-decoration: none;
+  padding: 11px 26px;
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s;
+}
+.nav-btn:hover { opacity: 0.85; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  padding: 160px 64px 100px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-blob {
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 700px; height: 700px;
+  background: radial-gradient(ellipse, rgba(88,59,138,0.3) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-blob2 {
+  position: absolute;
+  bottom: -50px; left: 5%;
+  width: 500px; height: 400px;
+  background: radial-gradient(ellipse, rgba(214,241,81,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-left { position: relative; z-index: 1; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 36px;
+}
+.eyebrow::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--lime);
+}
+
+h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(42px, 5.5vw, 78px);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+}
+
+h1 .line-lime { color: var(--lime); }
+h1 .line-dim  { color: var(--purple-mid); }
+
+.hero-sub {
+  font-size: 17px;
+  color: var(--grey);
+  line-height: 1.75;
+  max-width: 500px;
+  margin-bottom: 44px;
+}
+
+.hero-sub strong { color: var(--white); font-weight: 400; }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--lime);
+  color: var(--black);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 15px 30px;
+  transition: gap 0.2s, opacity 0.2s;
+}
+.btn-primary:hover { gap: 16px; opacity: 0.9; }
+
+/* hero right */
+.hero-right {
+  position: relative; z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.kpi-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 32px 36px;
+}
+
+.kpi-num {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 40px;
+  letter-spacing: -0.03em;
+  color: var(--lime);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.kpi-num.refs {
+  font-size: 22px;
+  color: var(--purple-mid);
+  line-height: 1.3;
+}
+
+.kpi-label {
+  font-size: 13px;
+  color: var(--grey);
+  line-height: 1.5;
+}
+
+/* ── STRIP ── */
+.strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
+  padding: 16px 64px;
+  display: flex;
+  gap: 40px;
+  overflow: hidden;
+}
+
+.strip-item {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--purple-mid);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.strip-item::after { content: '·'; color: var(--lime); }
+
+/* ── SECTIONS ── */
+section { padding: 100px 64px; }
+
+.s-tag {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+.s-tag::before { content: ''; width: 20px; height: 2px; background: var(--lime); }
+
+h2 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(30px, 3.8vw, 52px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+h2 em { font-style: normal; color: var(--lime); }
+
+/* ── PROBLÈME ── */
+.probleme { background: var(--card); }
+
+.probleme-intro {
+  font-size: 18px;
+  color: var(--grey);
+  max-width: 640px;
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+.probleme-intro strong { color: var(--white); font-weight: 400; }
+
+.probleme-intro2 {
+  font-size: 16px;
+  color: var(--grey);
+  max-width: 620px;
+  line-height: 1.75;
+  margin-bottom: 64px;
+}
+
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.v-card {
+  background: var(--black);
+  padding: 40px 36px;
+  border-left: 3px solid transparent;
+  transition: border-color 0.3s;
+  position: relative;
+}
+.v-card:hover { border-left-color: var(--lime); }
+
+.v-card-num {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--purple-mid);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.v-card strong {
+  display: block;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.v-card p {
+  font-size: 15px;
+  color: var(--grey);
+  line-height: 1.7;
+}
+
+/* ── OFFRES ── */
+.offres-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-top: 56px;
+}
+
+.offre {
+  background: var(--card);
+  padding: 40px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+.offre::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--lime);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.offre:hover { background: #181430; }
+.offre:hover::before { transform: scaleX(1); }
+
+.offre-badge {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--purple-mid);
+  margin-bottom: 18px;
+}
+
+.offre-name {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.offre-price {
+  font-size: 13px;
+  color: var(--lime);
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.offre-desc {
+  font-size: 14px;
+  color: var(--grey);
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+
+.offre-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.offre-list li {
+  font-size: 13px;
+  color: var(--white);
+  opacity: 0.75;
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.5;
+}
+.offre-list li::before {
+  content: '↗';
+  position: absolute;
+  left: 0;
+  color: var(--lime);
+  font-size: 11px;
+}
+
+/* ── PROOF ── */
+.proof { background: var(--card); }
+
+.proof-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: start;
+  margin-top: 56px;
+}
+
+.proof-kpis { display: flex; flex-direction: column; gap: 2px; }
+
+.proof-kpi {
+  background: var(--black);
+  padding: 32px 36px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.pk-num {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 46px;
+  font-weight: 800;
+  color: var(--lime);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.pk-num.ref-names {
+  font-size: 24px;
+  color: var(--purple-mid);
+  line-height: 1.3;
+}
+
+.pk-label { font-size: 13px; color: var(--grey); line-height: 1.5; padding-top: 4px; }
+
+.proof-copy p {
+  font-size: 16px;
+  color: var(--grey);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+.proof-copy strong { color: var(--white); font-weight: 400; }
+
+.proof-refs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ref-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  color: var(--grey);
+  padding: 14px 18px;
+  background: var(--black);
+  border: 1px solid var(--border);
+}
+.ref-dot {
+  width: 6px; height: 6px;
+  background: var(--lime);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── MÉTHODE ── */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-top: 56px;
+}
+
+.step {
+  background: var(--card);
+  padding: 40px 32px;
+}
+
+.step-n {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 56px;
+  font-weight: 800;
+  color: rgba(214,241,81,0.07);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.step-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.step-desc {
+  font-size: 14px;
+  color: var(--grey);
+  line-height: 1.65;
+}
+
+/* ── CTA ── */
+.cta-wrap {
+  text-align: center;
+  padding: 130px 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(88,59,138,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-wrap h2 {
+  position: relative; z-index: 1;
+  max-width: 600px;
+  margin: 0 auto 16px;
+}
+
+.cta-sub {
+  font-size: 16px;
+  color: var(--grey);
+  margin-bottom: 48px;
+  position: relative; z-index: 1;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--lime);
+  color: var(--lime);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 15px 32px;
+  position: relative; z-index: 1;
+  transition: background 0.2s, color 0.2s, gap 0.2s;
+}
+.btn-ghost:hover { background: var(--lime); color: var(--black); gap: 16px; }
+
+/* ── FOOTER ── */
+footer {
+  padding: 32px 64px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+footer p { font-size: 13px; color: var(--grey); }
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .offres-grid { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .proof-layout { grid-template-columns: 1fr; gap: 48px; }
+}
+
+@media (max-width: 680px) {
+  nav, section, .cta-wrap, footer, .strip { padding-left: 24px; padding-right: 24px; }
+  .hero { padding: 120px 24px 80px; }
+  .offres-grid, .steps, .value-grid { grid-template-columns: 1fr; }
+  .nav-btn { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Leukos<span>.</span></a>
+  <a href="#contact" class="nav-btn">Prendre contact →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-blob2"></div>
+
+  <div class="hero-left">
+    <div class="eyebrow reveal">CRM · RevOps · Acquisition</div>
+    <h1 class="reveal">
+      Faites de votre CRM<br>
+      <span class="line-dim">et de vos canaux</span><br>
+      <span class="line-lime">un système de revenu.</span>
+    </h1>
+    <p class="hero-sub reveal">
+      Vous avez les outils. Vous avez les équipes.<br>
+      <strong>Vous n'en tirez pas encore le plein potentiel.</strong><br><br>
+      On construit ensemble le système qui fait que les leads rentrent, avancent et se ferment — sans que votre équipe passe sa journée à des tâches qui peuvent être automatisées.
+    </p>
+    <a href="#offres" class="btn-primary reveal">Voir les offres →</a>
+  </div>
+
+  <div class="hero-right reveal">
+    <div class="kpi-card">
+      <div class="kpi-num">$900 → $50K</div>
+      <div class="kpi-label">CA mensuel — marque horlogère, 6 mois</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-num">10 ans</div>
+      <div class="kpi-label">Marketing digital, CRM &amp; RevOps</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-num refs">L'Oréal · Dior</div>
+      <div class="kpi-label">Références clients via Studio Sixe</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item">HubSpot</div>
+  <div class="strip-item">Pipedrive</div>
+  <div class="strip-item">ActiveCampaign</div>
+  <div class="strip-item">Klaviyo</div>
+  <div class="strip-item">Outbound</div>
+  <div class="strip-item">Automation</div>
+  <div class="strip-item">SEO · Ads · Content</div>
+  <div class="strip-item">Reporting RevOps</div>
+</div>
+
+<!-- PROBLÈME -->
+<section class="probleme">
+  <div class="s-tag">Le constat</div>
+  <h2>Vous êtes à un stade<br>où il faut <em>monter en puissance.</em></h2>
+  <p class="probleme-intro reveal">
+    Vous êtes à un stade où <strong>aligner vos efforts commerciaux et marketing autour d'un système cohérent</strong> fait toute la différence.
+  </p>
+  <p class="probleme-intro2 reveal">
+    C'est exactement ce sur quoi on travaille ensemble.
+  </p>
+  <div class="value-grid">
+    <div class="v-card reveal">
+      <div class="v-card-num">01</div>
+      <strong>Vision claire de vos revenus</strong>
+      <p>Découvrez les perles cachées dans votre pipeline. Identifiez les opportunités que vous laissez filer faute de visibilité sur vos données.</p>
+    </div>
+    <div class="v-card reveal">
+      <div class="v-card-num">02</div>
+      <strong>Comprendre où les leads stagnent</strong>
+      <p>Pourquoi certains leads ne passent pas certaines étapes ? Je lis votre funnel et je vous dis exactement où ça coince et pourquoi.</p>
+    </div>
+    <div class="v-card reveal">
+      <div class="v-card-num">03</div>
+      <strong>Un CRM qui travaille vraiment</strong>
+      <p>Pas un répertoire de cartes de visite. Un système qui vous donne des données fiables sur vos taux de closing, votre CAC, et qui fait en sorte que chaque client vous rapporte plus qu'il ne vous a coûté.</p>
+    </div>
+    <div class="v-card reveal">
+      <div class="v-card-num">04</div>
+      <strong>Les bons canaux, le bon ICP</strong>
+      <p>Côté acquisition, on identifie les canaux qui valent vraiment le coup. Et on cadre votre ICP pour ne pas gaspiller vos efforts commerciaux et marketing sur les mauvaises cibles.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUTOMATION -->
+<section>
+  <div class="s-tag">Automatisation</div>
+  <h2>Libérez vos équipes<br><em>des tâches qui ne devraient plus exister.</em></h2>
+  <p class="probleme-intro reveal" style="margin-bottom: 56px;">
+    Aujourd'hui, l'automatisation permet de faire des choses que très peu de PME exploitent encore. <strong>Vos commerciaux devraient passer leur temps à vendre</strong>, pas à enrichir des contacts, relancer manuellement ou chercher dans quel état est un deal.
+  </p>
+  <div class="value-grid">
+    <div class="v-card reveal">
+      <div class="v-card-num">Scoring</div>
+      <strong>Savoir à qui parler en premier</strong>
+      <p>Chaque lead scoré automatiquement selon des critères qui correspondent à votre réalité commerciale. Vos commerciaux ne travaillent que sur ce qui a de la valeur.</p>
+    </div>
+    <div class="v-card reveal">
+      <div class="v-card-num">Enrichissement</div>
+      <strong>Des données complètes sans effort manuel</strong>
+      <p>Entreprise, poste, taille d'équipe, stack tech — les informations qui qualifient un lead arrivent automatiquement dans votre CRM, sans que personne ne les saisisse à la main.</p>
+    </div>
+    <div class="v-card reveal">
+      <div class="v-card-num">Nettoyage</div>
+      <strong>Un CRM propre qui reste propre</strong>
+      <p>Doublons, données obsolètes, contacts sans activité — détectés et traités automatiquement. La base de données reste exploitable sans effort continu.</p>
+    </div>
+    <div class="v-card reveal">
+      <div class="v-card-num">Séquences</div>
+      <strong>Les relances qui partent au bon moment</strong>
+      <p>Nurturing, réactivation, onboarding — les bonnes séquences se déclenchent sans intervention manuelle. Aucun lead ne coule faute de suivi.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OFFRES -->
+<section id="offres">
+  <div class="s-tag">Les offres</div>
+  <h2>Quatre formats.<br><em>Un seul objectif.</em></h2>
+
+  <div class="offres-grid">
+    <div class="offre reveal">
+      <div class="offre-badge">Entrée de gamme</div>
+      <div class="offre-name">Revenue Snapshot</div>
+      <div class="offre-price">250 – 400 €  ·  one-shot</div>
+      <p class="offre-desc">Diagnostic express. Analyse du CRM et des canaux d'acquisition, identification de ce qui coince, exécution de 2-3 quick wins adaptés au contexte.</p>
+      <ul class="offre-list">
+        <li>Audit CRM + canaux d'acquisition</li>
+        <li>Identification des points de friction</li>
+        <li>2-3 quick wins exécutés</li>
+        <li>Rapport d'actions priorisées</li>
+      </ul>
+    </div>
+
+    <div class="offre reveal">
+      <div class="offre-badge">One-shot</div>
+      <div class="offre-name">Diagnostic &amp; Rebuild</div>
+      <div class="offre-price">1 000 – 1 500 €  ·  2-3 semaines</div>
+      <p class="offre-desc">État des lieux complet du système de revenus. Reconstruction du CRM, des pipelines, des séquences. Livré avec documentation.</p>
+      <ul class="offre-list">
+        <li>Audit complet CRM + process commerciaux</li>
+        <li>Reconstruction pipeline et propriétés</li>
+        <li>Automations et séquences de relance</li>
+        <li>KPIs et tableau de bord opérationnel</li>
+      </ul>
+    </div>
+
+    <div class="offre reveal">
+      <div class="offre-badge">Retainer</div>
+      <div class="offre-name">Revenue Partner</div>
+      <div class="offre-price">600 – 900 € / mois</div>
+      <p class="offre-desc">Un œil permanent sur le système. Suivi des métriques, alertes quand quelque chose dérive, recommandations d'ajustements. Votre équipe exécute.</p>
+      <ul class="offre-list">
+        <li>Suivi mensuel des indicateurs clés</li>
+        <li>Alertes et recommandations proactives</li>
+        <li>Évolutions CRM et séquences</li>
+        <li>Point mensuel de 60 min</li>
+      </ul>
+    </div>
+
+    <div class="offre reveal">
+      <div class="offre-badge">Retainer · Full scope</div>
+      <div class="offre-name">Revenue Architecture</div>
+      <div class="offre-price">1 200 – 1 600 € / mois</div>
+      <p class="offre-desc">Stratégie + exécution complète. Construction du système de revenus, pilotage en continu, ajustements au fil des données. Acquisition, nurturing, closing — bout en bout.</p>
+      <ul class="offre-list">
+        <li>Tout le Revenue Partner</li>
+        <li>Stratégie d'acquisition multicanale</li>
+        <li>Exécution des campagnes et séquences</li>
+        <li>Reporting RevOps mensuel complet</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof">
+  <div class="s-tag">Qui je suis</div>
+  <h2>10 ans en marketing digital.<br><em>La strat et l'exécution.</em></h2>
+
+  <div class="proof-layout">
+    <div class="proof-kpis">
+      <div class="proof-kpi reveal">
+        <div>
+          <div class="pk-num">$900→$50K</div>
+          <div class="pk-label">CA mensuel — marque horlogère<br>6 mois de mandat</div>
+        </div>
+      </div>
+      <div class="proof-kpi reveal">
+        <div>
+          <div class="pk-num ref-names">L'Oréal · Dior</div>
+          <div class="pk-label">Références clients<br>via Studio Sixe</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proof-copy">
+      <p class="reveal">
+        Dix ans en marketing digital mènent inévitablement à la même question : pourquoi ça ne convertit pas derrière ? C'est là que le RevOps commence — dans cette friction entre ce que le marketing génère et ce que les sales en font. Comprendre les canaux d'acquisition, les process de closing, les points de blocage à chaque étape du pipe, et les activer ensemble : c'est cette vision bout en bout qui fait la différence entre un CRM bien configuré et un système de revenus qui tourne vraiment.
+      </p>
+      <p class="reveal" style="font-size:15px; color: var(--grey); line-height:1.8; padding: 24px 28px; border-left: 3px solid var(--lime); margin-bottom: 32px;">
+        Une chose qui compte beaucoup dans cette façon de travailler : prendre le temps de comprendre votre business de l'intérieur avant de toucher à quoi que ce soit. Pas d'hypothèses, pas de template appliqué à l'aveugle. Ce qui est le mieux pour vous — pas ce qui est le plus rapide à livrer.
+      </p>
+      <div class="proof-refs">
+        <div class="ref-row reveal"><div class="ref-dot"></div>Agence créative luxe — setup CRM complet + stratégie growth</div>
+        <div class="ref-row reveal"><div class="ref-dot"></div>Cabinet de recrutement — pipeline et séquences outbound</div>
+        <div class="ref-row reveal"><div class="ref-dot"></div>Cabinet d'avocats M&A France × Inde — 10% de taux de réponse en cold mail</div>
+        <div class="ref-row reveal"><div class="ref-dot"></div>Formation & écoles de commerce — 85k de pipeline généré, 40k signés en 4 mois</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTHODE -->
+<section>
+  <div class="s-tag">La méthode</div>
+  <h2>Comment<br><em>ça se passe.</em></h2>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-n">01</div>
+      <div class="step-title">Diagnostic</div>
+      <p class="step-desc">30 minutes de call. J'évalue votre situation actuelle, vos outils, vos objectifs. On définit le format le plus adapté.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-n">02</div>
+      <div class="step-title">Proposition</div>
+      <p class="step-desc">Un périmètre clair, un calendrier, un tarif. Pas de zone grise, pas de surprise en cours de route.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-n">03</div>
+      <div class="step-title">Exécution</div>
+      <p class="step-desc">Je travaille dans vos outils. Points réguliers, livrables documentés, résultats mesurables à chaque étape.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-n">04</div>
+      <div class="step-title">Pilotage</div>
+      <p class="step-desc">Suivi mensuel des métriques. Alertes quand quelque chose dérive. Vous savez toujours exactement où vous en êtes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT GRATUIT -->
+<section style="background: var(--lime); padding: 80px 64px;">
+  <div style="max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center;">
+    <div>
+      <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(13,13,13,0.5); margin-bottom: 20px;">Offre d'entrée · Gratuit</div>
+      <h2 style="color: var(--black); margin-bottom: 16px; font-size: clamp(28px, 3.5vw, 44px);">Audit CRM offert.</h2>
+      <p style="font-size: 16px; color: rgba(13,13,13,0.7); line-height: 1.75; max-width: 520px; margin-bottom: 0;">
+        Lecture complète de votre CRM, call de 30 min avec vous, call de 30 min avec un commercial. Restitution structurée de ce qui fonctionne, ce qui coince, et ce qui peut être amélioré rapidement — sans engagement.
+      </p>
+    </div>
+    <div style="flex-shrink: 0;">
+      <a href="mailto:estelle@leukosdigital.com" style="display: inline-flex; align-items: center; gap: 10px; background: var(--black); color: var(--lime); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; text-decoration: none; padding: 16px 30px; white-space: nowrap; transition: opacity 0.2s;">
+        Demander l'audit →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-wrap" id="contact">
+  <div class="cta-glow"></div>
+  <h2 class="reveal">Votre pipe mérite<br>de <em>vraiment tourner.</em></h2>
+  <p class="cta-sub reveal">30 minutes pour voir si on peut travailler ensemble.</p>
+  <a href="mailto:estelle@leukosdigital.com" class="btn-ghost reveal">Prendre contact →</a>
+</section>
+
+<footer>
+  <a href="#" class="logo">Leukos<span>.</span></a>
+  <p>leukosdigital.com</p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  const siblings = [...(el.parentElement?.querySelectorAll('.reveal') || [])];
+  const idx = siblings.indexOf(el);
+  el.style.transitionDelay = `${idx * 90}ms`;
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
